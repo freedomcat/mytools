@@ -1,74 +1,63 @@
 @echo off
 
-REM ’x‰„ŠÂ‹«•Ï”“WŠJ‚ğ—LŒø‰»i!VAR! ‚ğg‚¤‚½‚ßj
+REM é…å»¶ç’°å¢ƒå¤‰æ•°å±•é–‹ã‚’æœ‰åŠ¹åŒ–ï¼ˆ!VAR! ã‚’ä½¿ã†ãŸã‚ï¼‰
 setlocal enabledelayedexpansion
 
 set "SCRIPT_DIR=%~dp0"
 set "TOOL_ROOT=%SCRIPT_DIR%..\"
 
-REM ƒƒ‚’ ‚Æ‚©GŠÛ‚Æ‚©ƒTƒNƒ‰ƒGƒfƒBƒ^‚Æ‚©VSCode‚Æ‚©‚¨D‚İ‚ÌƒGƒfƒBƒ^ƒpƒX‚ğ“ü‚ê‚é
+REM ãƒ¡ãƒ¢å¸³ã¨ã‹ç§€ä¸¸ã¨ã‹ã‚µã‚¯ãƒ©ã‚¨ãƒ‡ã‚£ã‚¿ã¨ã‹VSCodeã¨ã‹ãŠå¥½ã¿ã®ã‚¨ãƒ‡ã‚£ã‚¿ãƒ‘ã‚¹ã‚’å…¥ã‚Œã‚‹
 if not exist "%EDITOR%" (
     set "EDITOR=notepad.exe"
 )
 
-REM ¡“ú‚Ì“ú•t‚ğæ“¾i—á: 2025/07/12 ‚ÌŒ`®‚ğ‘z’èj
+REM ä»Šæ—¥ã®æ—¥ä»˜ã‚’å–å¾—ï¼ˆä¾‹: 2025/07/12 ã®å½¢å¼ã‚’æƒ³å®šï¼‰
 set "today=%date%"
 
-REM “ú•t‚ğƒp[ƒc‚É•ª‰ğiŒ`®‚É‚æ‚è•K—v‚È‚ç’²®j
+REM æ—¥ä»˜ã‚’ãƒ‘ãƒ¼ãƒ„ã«åˆ†è§£ï¼ˆå½¢å¼ã«ã‚ˆã‚Šå¿…è¦ãªã‚‰èª¿æ•´ï¼‰
 for /f "tokens=1-3 delims=/- " %%a in ("%today%") do (
     set "yyyy=%%a"
     set "m0=%%b"
     set "d0=%%c"
 )
 
-REM ƒ[ƒƒTƒvƒŒƒX‚È‚µiæ“ª0‚ğíœj
+REM ã‚¼ãƒ­ã‚µãƒ—ãƒ¬ã‚¹ãªã—ï¼ˆå…ˆé ­0ã‚’å‰Šé™¤ï¼‰
 set /a m=!m0!  >nul
 set /a d=!d0!  >nul
 
-REM ‚±‚Ìƒtƒ@ƒCƒ‹©g‚ğŠJ‚­
+REM ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«è‡ªèº«ã‚’é–‹ã
 if "%1"=="f" (
 	start "" "%EDITOR%" "%SCRIPT_DIR%\f.bat"
 	exit /b
 )
 
-REM cmdƒtƒHƒ‹ƒ_‚ğŠJ‚­
+REM cmdãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ã
 if "%1"=="cmd" (
     	start "" "!TOOL_ROOT!cmd"
 	exit /b
 )
 
-REM cmdrscƒtƒHƒ‹ƒ_‚ğŠJ‚­
+REM cmdrscãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ã
 if "%1"=="cmdsrc" (
     start "" "%SCRIPT_DIR%"
     exit /b
 )
 
-REM ƒNƒŠƒbƒvƒ{[ƒh—pƒeƒ“ƒvƒŒ[ƒgƒtƒHƒ‹ƒ_‚ğŠJ‚­
+REM ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ç”¨ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ã
 if "%1"=="c" (
     start "" "%TOOL_ROOT%\c"
     exit /b
 )
 
-REM ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒgƒtƒHƒ‹ƒ_‚ğŠJ‚­
+REM ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ã
 if "%1"=="sc" (
 	explorer shell:Screenshots
 	exit /b
 )
 
-REM V‹KGoogleƒXƒvƒŒƒbƒhƒV[ƒg‚ğŠJ‚­
+REM æ–°è¦Googleã‚¹ãƒ—ãƒ¬ãƒƒãƒ‰ã‚·ãƒ¼ãƒˆã‚’é–‹ã
 if "%1"=="ns" (
     start "" "https://sheet.new"
-    exit /b
-)
-
-
-if "%1"=="html" (
-	start "" "https://yv.socoda.net/tools/html.html"
-	exit /b
-)
-
-if "%1"=="tl" (
-    start "" "https://scrapbox.io/shino/!yyyy!%%2F!m!%%2F!d!"
     exit /b
 )
 
